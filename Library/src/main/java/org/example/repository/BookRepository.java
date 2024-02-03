@@ -1,4 +1,7 @@
 package org.example.repository;
 
-public interface BookRepository {
+import org.example.entity.BookEntity;
+import org.springframework.data.repository.CrudRepository;
+
+public interface BookRepository extends CrudRepository<BookEntity,Long> {
 }
