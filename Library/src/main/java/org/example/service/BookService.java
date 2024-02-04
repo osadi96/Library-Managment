@@ -10,6 +10,7 @@ public interface BookService {
 
     boolean deleteBook(Long id);
 
-    List<BookEntity> getBooks();
+    Book getBookById(Long id);
 
+    List<BookEntity> getBooks();
 }

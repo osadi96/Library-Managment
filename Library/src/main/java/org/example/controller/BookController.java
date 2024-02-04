@@ -1,10 +1,8 @@
 package org.example.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.Service;
 import org.example.dto.Book;
 import org.example.entity.BookEntity;
-import org.example.service.BookService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +10,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/book")
 @RequiredArgsConstructor
+
 public class BookController {
+    BookController service = null;
 
     @PostMapping("/add")
     @ResponseStatus (HttpStatus.CREATED)
@@ -29,8 +29,12 @@ public class BookController {
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<String> deleteBook(@PathVariable Long id) {
         return service.deleteBook(id) ?
-                ResponseEntity.ok("Deleted!"):
-                ResponseEntity.notFound().build();
+            ResponseEntity.ok("Deleted!") :
+            ResponseEntity.notFound().build();
     }
 
+    @GetMapping("search/{id}")
+    public Book getBookById (@PathVariable Long id){
+        return service.getBookById(id);
+    }
 }
